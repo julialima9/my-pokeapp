@@ -17,17 +17,17 @@ const CardPokemon = () => {
 
   return (
     <div className='list-pokemon'>
-        <p>Caso queira pesquisar seus Pokémons, ultilize o filtro ao lado:</p>
-      {pokemons.length === 0 ? (
-        <p>Carregando...</p>
-      ) : (
-        pokemons.map((pokemon) => (
-          <div className='card-pokemon' key={pokemon.id}>
-            <img className='img-pokemon' src={pokemon.image} alt={pokemon.name} />
-            <p>{pokemon.name}</p>
-          </div>
-        ))
-      )}
+        <p className=''>Caso queira pesquisar seus Pokémons, ultilize o filtro ao lado:</p>
+        {pokemons.length === 0 ? (
+            <p>Carregando...</p>
+        ) : (
+            pokemons.map((pokemon) => (
+            <div className='card-pokemon' key={pokemon.id}>
+                <img className='img-pokemon' src={pokemon.image} alt={pokemon.name} />
+                <p>{pokemon.name}</p>
+            </div>
+            ))
+        )}
     </div>
   );
 };
