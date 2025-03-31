@@ -8,7 +8,7 @@ const CardPokemon = () => {
   useEffect(() => {
     const getPokemons = async () => {
       const data = await fetchPokemons();
-      console.log('Dados da API:', data); // Ver dados no console do navegador
+      console.log('Todos pokemons:', data);
       setPokemons(data);
     };
 
@@ -16,18 +16,29 @@ const CardPokemon = () => {
   }, []);
 
   return (
-    <div className='list-pokemon'>
-        <p className=''>Caso queira pesquisar seus Pokémons, ultilize o filtro ao lado:</p>
-        {pokemons.length === 0 ? (
-            <p>Carregando...</p>
-        ) : (
-            pokemons.map((pokemon) => (
-            <div className='card-pokemon' key={pokemon.id}>
-                <img className='img-pokemon' src={pokemon.image} alt={pokemon.name} />
-                <p>{pokemon.name}</p>
-            </div>
-            ))
-        )}
+    <div className='container'>
+        <div className='header'>
+            <p className='search'>Encontre seu Pokémon favorito aqui:</p>
+            <input className='input-search' type="search" placeholder='Ex: Charmander'/>
+            <button>Pesquisar</button>
+        </div>
+        <div className='list-pokemon'>
+            {pokemons.length === 0 ? (
+                <p>Carregando...</p>
+            ) : (
+                pokemons.map((pokemon) => (
+                <div className='card-pokemon' key={pokemon.id} title={pokemon.name}>
+                    <div className='img-pokemon'>
+                        <img className='img' src={pokemon.image} alt={pokemon.name} />
+                    </div>
+                    <div className='infos-pokemon'>
+                        <p className='id-pokemon'>N°{pokemon.id}</p>
+                        <p className='name-pokemon'>{pokemon.name}</p>
+                    </div>
+                </div>
+                ))
+            )}
+        </div>
     </div>
   );
 };

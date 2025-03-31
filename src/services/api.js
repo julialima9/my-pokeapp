@@ -1,16 +1,13 @@
-const API_URL = 'https://pokeapi.co/api/v2/';
-
-export const fetchPokemons = async (limit = 20) => {
+export const fetchPokemons = async () => {
     console.log('fetchPokemons');
   try {
-    const response = await fetch(`${API_URL}pokemon?limit=${limit}`);
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=20`);
     console.log(response);
     if (!response.ok) {
-      throw new Error('Erro ao buscar Pokémon');
+      throw new Error('Erro ao trazer os Pokémon');
     }
     const data = await response.json();
     
-    // Para pegar detalhes como imagem, fazemos outra requisição
     const pokemonDetails = await Promise.all(
       data.results.map(async (pokemon) => {
         const res = await fetch(pokemon.url);
@@ -18,7 +15,8 @@ export const fetchPokemons = async (limit = 20) => {
         return {
           id: details.id,
           name: details.name,
-          image: details.sprites.front_default, // Imagem do Pokémon
+          image: details.sprites.front_default, 
+          types: details.types.map((type) => type.type.name),
         };
       })
     );

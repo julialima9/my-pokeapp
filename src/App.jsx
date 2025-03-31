@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div>
-      <h1>Bem vindo ao PokeApp</h1>
+      <h1 title='PokeApp'>PokeApp</h1>
       <PokemonList />
     </div>
   )
