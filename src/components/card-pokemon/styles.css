@@ -1,0 +1,22 @@
+.list-pokemon {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+    .card-pokemon {
+        background-color: red;
+
+        .img-pokemon {
+            width: 150px;
+            height: 150px;
+
+            border: 1px solid #000;
+            border-radius: 10px;
+        }
+    }
+
+    
+}
+
