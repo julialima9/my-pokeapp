@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { fetchPokemons } from '../../services/api';
 import './styles.css';
+import { fetchPokemons } from '../../services/api';
+import InputSearch from '../input-search';
 
 const CardPokemon = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -10,7 +11,6 @@ const CardPokemon = () => {
   useEffect(() => {
     const getPokemons = async () => {
       const data = await fetchPokemons();
-      console.log('Todos pokemons:', data);
       setPokemons(data);
       setFilteredPokemons(data);
     };
@@ -27,17 +27,7 @@ const CardPokemon = () => {
 
   return (
     <div className='container'>
-      <div className='header'>
-        <p className='search'>Encontre seu Pokémon favorito aqui:</p>
-        <input
-          className='input-search'
-          type="search"
-          placeholder='Ex: Charmander'
-          value={search}
-          onChange={(e) => setSearch(e.target.value)} 
-        />
-      </div>
-
+      <InputSearch search={search} setSearch={setSearch} />
       <div className='list-pokemon'>
         {filteredPokemons.length === 0 ? (
           <p>Carregando...</p>
@@ -50,6 +40,8 @@ const CardPokemon = () => {
               <div className='infos-pokemon'>
                 <p className='id-pokemon'>N°{pokemon.id}</p>
                 <p className='name-pokemon'>{pokemon.name}</p>
+                <p className='type-pokemon'>{pokemon.types.join(' | ')}</p>
+
               </div>
             </div>
           ))

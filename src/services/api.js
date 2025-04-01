@@ -1,8 +1,6 @@
 export const fetchPokemons = async () => {
-    console.log('fetchPokemons');
   try {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=20`);
-    console.log(response);
     if (!response.ok) {
       throw new Error('Erro ao trazer os Pokémon!');
     }
