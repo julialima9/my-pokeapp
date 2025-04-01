@@ -11,6 +11,12 @@
         align-items: center;
         gap: 40px;
 
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            gap: 10px;
+            
+        }
+
         .search {
             color: #f1f1f1;
         }
